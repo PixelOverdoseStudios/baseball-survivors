@@ -1,28 +1,34 @@
 fileFormatVersion: 2
-guid: dd1b659c2e13b904abe7c0ccc11dda37
+guid: 51cf720db527b9443a439473b05ff7fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3307845806697959098
-    second: Legs-Sheet_0
+      213: 6489801342657608687
+    second: Steven_3_Sheet_centred_0
   - first:
-      213: -9079939228014243177
-    second: Legs-Sheet_1
+      213: 300676530877067369
+    second: Steven_3_Sheet_centred_1
   - first:
-      213: -1704009251021759457
-    second: Legs-Sheet_2
+      213: -3123692063822729457
+    second: Steven_3_Sheet_centred_2
   - first:
-      213: 8080489502357723652
-    second: Legs-Sheet_3
+      213: -8611341687589129562
+    second: Steven_3_Sheet_centred_3
   - first:
-      213: -7403219821971646913
-    second: Legs-Sheet_4
+      213: 2576340530563858980
+    second: Steven_3_Sheet_centred_4
   - first:
-      213: -606033867135823002
-    second: Legs-Sheet_5
+      213: 374272093509991174
+    second: Steven_3_Sheet_centred_5
   - first:
-      213: -2642677243486307982
-    second: Legs-Sheet_6
+      213: 6485025396819948992
+    second: Steven_3_Sheet_centred_6
+  - first:
+      213: 8968277058887805021
+    second: Steven_3_Sheet_centred_7
+  - first:
+      213: -8348169944414434380
+    second: Steven_3_Sheet_centred_8
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -69,7 +75,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 34
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -131,13 +137,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Legs-Sheet_0
+      name: Steven_3_Sheet_centred_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 19
         y: 0
-        width: 68
-        height: 58
+        width: 25
+        height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 641b008b3cb2812d0800000000000000
-      internalID: -3307845806697959098
+      spriteID: febb5fbcfe7601a50800000000000000
+      internalID: 6489801342657608687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Legs-Sheet_1
+      name: Steven_3_Sheet_centred_1
       rect:
         serializedVersion: 2
-        x: 68
+        x: 76
         y: 0
-        width: 68
-        height: 58
+        width: 34
+        height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 792931431639df180800000000000000
-      internalID: -9079939228014243177
+      spriteID: 960793736b73c2400800000000000000
+      internalID: 300676530877067369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Legs-Sheet_2
+      name: Steven_3_Sheet_centred_2
       rect:
         serializedVersion: 2
-        x: 136
+        x: 142
         y: 0
-        width: 68
-        height: 58
+        width: 34
+        height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f1c5eda4d942a58e0800000000000000
-      internalID: -1704009251021759457
+      spriteID: f0fa3243e9a66a4d0800000000000000
+      internalID: -3123692063822729457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Legs-Sheet_3
+      name: Steven_3_Sheet_centred_3
       rect:
         serializedVersion: 2
-        x: 204
+        x: 208
         y: 0
-        width: 68
-        height: 58
+        width: 34
+        height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40a1e4fd36aa32070800000000000000
-      internalID: 8080489502357723652
+      spriteID: 6a2bcb72c5e5e7880800000000000000
+      internalID: -8611341687589129562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Legs-Sheet_4
+      name: Steven_3_Sheet_centred_4
       rect:
         serializedVersion: 2
-        x: 272
+        x: 274
         y: 0
-        width: 68
-        height: 58
+        width: 34
+        height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +240,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f36df3dbbca724990800000000000000
-      internalID: -7403219821971646913
+      spriteID: 42243b0001001c320800000000000000
+      internalID: 2576340530563858980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Legs-Sheet_5
+      name: Steven_3_Sheet_centred_5
       rect:
         serializedVersion: 2
         x: 340
         y: 0
-        width: 68
-        height: 58
+        width: 33
+        height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,20 +262,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6635383a86fe697f0800000000000000
-      internalID: -606033867135823002
+      spriteID: 60b310f6c7ea13500800000000000000
+      internalID: 374272093509991174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Legs-Sheet_6
+      name: Steven_3_Sheet_centred_6
       rect:
         serializedVersion: 2
-        x: 408
+        x: 406
         y: 0
-        width: 68
-        height: 58
+        width: 33
+        height: 43
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,8 +284,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2797dfd6c03535bd0800000000000000
-      internalID: -2642677243486307982
+      spriteID: 0c5f6d04d307ff950800000000000000
+      internalID: 6485025396819948992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_3_Sheet_centred_7
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 0
+        width: 32
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d58ea461878b57c70800000000000000
+      internalID: 8968277058887805021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steven_3_Sheet_centred_8
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 0
+        width: 32
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bbc5928aa7552c80800000000000000
+      internalID: -8348169944414434380
       vertices: []
       indices: 
       edges: []
@@ -288,7 +338,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: c16570ee70757fe4eac695ac88e64d4b
+    spriteID: 572f5a4ff15493d49aab8260581e8392
     internalID: 0
     vertices: []
     indices: 
@@ -298,13 +348,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Legs-Sheet_0: -3307845806697959098
-      Legs-Sheet_1: -9079939228014243177
-      Legs-Sheet_2: -1704009251021759457
-      Legs-Sheet_3: 8080489502357723652
-      Legs-Sheet_4: -7403219821971646913
-      Legs-Sheet_5: -606033867135823002
-      Legs-Sheet_6: -2642677243486307982
+      Steven_3_Sheet_centred_0: 6489801342657608687
+      Steven_3_Sheet_centred_1: 300676530877067369
+      Steven_3_Sheet_centred_2: -3123692063822729457
+      Steven_3_Sheet_centred_3: -8611341687589129562
+      Steven_3_Sheet_centred_4: 2576340530563858980
+      Steven_3_Sheet_centred_5: 374272093509991174
+      Steven_3_Sheet_centred_6: 6485025396819948992
+      Steven_3_Sheet_centred_7: 8968277058887805021
+      Steven_3_Sheet_centred_8: -8348169944414434380
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

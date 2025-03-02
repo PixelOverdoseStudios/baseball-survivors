@@ -7,13 +7,22 @@ public class PlayerInstance : MonoBehaviour
 
     [Header("Player Config")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float attackCooldown = 1f;
+    private float attackTimer;
 
     [Header("Animators")]
     [SerializeField] private Animator bodyAnimator;
     [SerializeField] private Animator legsAnimator;
 
+    [Header("Weapons")]
+    [SerializeField] private GameObject basicAttack;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
+
+    [SerializeField] private bool autoAttack;
+
+    [SerializeField] private GameObject objectsToFlip;
 
     private void Awake()
     {
@@ -24,22 +33,16 @@ public class PlayerInstance : MonoBehaviour
 
     private void Update()
     {
-        if (moveInput.x > 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else if (moveInput.x < 0)
-        {
-            transform.localScale = Vector3.one;
-        }
+        PlayerMovement();
 
-        if(moveInput != Vector2.zero)
+        attackTimer += Time.deltaTime;
+        if(autoAttack)
         {
-            legsAnimator.SetBool("moving", true);
-        }
-        else
-        {
-            legsAnimator.SetBool("moving", false);
+            if(attackTimer > attackCooldown)
+            {
+                bodyAnimator.SetTrigger("attack");
+                attackTimer = 0;
+            }
         }
     }
 
@@ -48,6 +51,32 @@ public class PlayerInstance : MonoBehaviour
         rb.linearVelocity = moveInput * moveSpeed;
     }
 
+    #region Player Functions
+    private void PlayerMovement()
+    {
+        if (moveInput.x > 0)
+        {
+            objectsToFlip.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (moveInput.x < 0)
+        {
+            objectsToFlip.transform.localScale = Vector3.one;
+        }
+
+        if (moveInput != Vector2.zero)
+        {
+            bodyAnimator.SetBool("moving", true);
+            legsAnimator.SetBool("moving", true);
+        }
+        else
+        {
+            bodyAnimator.SetBool("moving", false);
+            legsAnimator.SetBool("moving", false);
+        }
+    }
+    #endregion
+
+    #region Input Actions
     public void Movement(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -56,7 +85,27 @@ public class PlayerInstance : MonoBehaviour
     public void Attack(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+        if (autoAttack) return;
 
-        bodyAnimator.SetTrigger("attack");
+        if (attackTimer > attackCooldown)
+        {
+            bodyAnimator.SetTrigger("attack");
+            attackTimer = 0;
+        }
     }
+
+    public void AutoAttackTrigger(InputAction.CallbackContext context)
+    {
+        if (!context.started) return;
+
+        if (autoAttack)
+        {
+            autoAttack = false;
+        }
+        else
+        {
+            autoAttack = true;
+        }
+    }
+    #endregion
 }

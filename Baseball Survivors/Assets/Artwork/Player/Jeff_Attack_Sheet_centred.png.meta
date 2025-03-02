@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: f11a15df815fdd64ea18e10ef899cad5
+guid: 2446323bbf79601428698e0d31fb64f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3710826467761126719
-    second: Jeff_Attack-Sheet_0
+      213: -8295609714361858145
+    second: Jeff_Attack_Sheet_centred_0
   - first:
-      213: 3029327187271164239
-    second: Jeff_Attack-Sheet_1
+      213: -5890016303325489516
+    second: Jeff_Attack_Sheet_centred_1
   - first:
-      213: 2876969753378817444
-    second: Jeff_Attack-Sheet_2
+      213: 2702402292804256824
+    second: Jeff_Attack_Sheet_centred_2
   - first:
-      213: 4338302250705749203
-    second: Jeff_Attack-Sheet_3
+      213: -2098474718564106134
+    second: Jeff_Attack_Sheet_centred_3
   - first:
-      213: 4412919608035238775
-    second: Jeff_Attack-Sheet_4
+      213: -4188430644620760623
+    second: Jeff_Attack_Sheet_centred_4
   - first:
-      213: 8220711926904633623
-    second: Jeff_Attack-Sheet_5
+      213: 8215677189644625268
+    second: Jeff_Attack_Sheet_centred_5
   - first:
-      213: -7819767751283886195
-    second: Jeff_Attack-Sheet_6
+      213: -7012045928522036206
+    second: Jeff_Attack_Sheet_centred_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -131,12 +131,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jeff_Attack-Sheet_0
+      name: Jeff_Attack_Sheet_centred_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 68
+        width: 96
         height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -146,19 +146,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c20bf50dfe708cc0800000000000000
-      internalID: -3710826467761126719
+      spriteID: f978e24bae210ec80800000000000000
+      internalID: -8295609714361858145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jeff_Attack-Sheet_1
+      name: Jeff_Attack_Sheet_centred_1
       rect:
         serializedVersion: 2
-        x: 68
+        x: 96
         y: 0
-        width: 68
+        width: 96
         height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -168,19 +168,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f412bb9d6055a0a20800000000000000
-      internalID: 3029327187271164239
+      spriteID: 4965607f065724ea0800000000000000
+      internalID: -5890016303325489516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jeff_Attack-Sheet_2
+      name: Jeff_Attack_Sheet_centred_2
       rect:
         serializedVersion: 2
-        x: 136
+        x: 192
         y: 0
-        width: 68
+        width: 96
         height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -190,19 +190,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a500b37fbc0de720800000000000000
-      internalID: 2876969753378817444
+      spriteID: 8348cce319cd08520800000000000000
+      internalID: 2702402292804256824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jeff_Attack-Sheet_3
+      name: Jeff_Attack_Sheet_centred_3
       rect:
         serializedVersion: 2
-        x: 204
+        x: 288
         y: 0
-        width: 68
+        width: 96
         height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -212,19 +212,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d4089569eeb43c30800000000000000
-      internalID: 4338302250705749203
+      spriteID: a6049d59c58b0e2e0800000000000000
+      internalID: -2098474718564106134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jeff_Attack-Sheet_4
+      name: Jeff_Attack_Sheet_centred_4
       rect:
         serializedVersion: 2
-        x: 272
+        x: 384
         y: 0
-        width: 68
+        width: 96
         height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -234,19 +234,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 773eb4bb007dd3d30800000000000000
-      internalID: 4412919608035238775
+      spriteID: 1d9e40d1584bfd5c0800000000000000
+      internalID: -4188430644620760623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jeff_Attack-Sheet_5
+      name: Jeff_Attack_Sheet_centred_5
       rect:
         serializedVersion: 2
-        x: 340
+        x: 480
         y: 0
-        width: 68
+        width: 96
         height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -256,19 +256,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 719b7fb31f5d51270800000000000000
-      internalID: 8220711926904633623
+      spriteID: 4752c0e10e2f30270800000000000000
+      internalID: 8215677189644625268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Jeff_Attack-Sheet_6
+      name: Jeff_Attack_Sheet_centred_6
       rect:
         serializedVersion: 2
-        x: 408
+        x: 576
         y: 0
-        width: 68
+        width: 96
         height: 58
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d873bae39aa9a7390800000000000000
-      internalID: -7819767751283886195
+      spriteID: 21c48b1216530be90800000000000000
+      internalID: -7012045928522036206
       vertices: []
       indices: 
       edges: []
@@ -288,7 +288,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b6e48dfc722931c45b5c7b2d4d94d46e
+    spriteID: 28eb541e56e537546814c4fae160f546
     internalID: 0
     vertices: []
     indices: 
@@ -298,13 +298,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Jeff_Attack-Sheet_0: -3710826467761126719
-      Jeff_Attack-Sheet_1: 3029327187271164239
-      Jeff_Attack-Sheet_2: 2876969753378817444
-      Jeff_Attack-Sheet_3: 4338302250705749203
-      Jeff_Attack-Sheet_4: 4412919608035238775
-      Jeff_Attack-Sheet_5: 8220711926904633623
-      Jeff_Attack-Sheet_6: -7819767751283886195
+      Jeff_Attack_Sheet_centred_0: -8295609714361858145
+      Jeff_Attack_Sheet_centred_1: -5890016303325489516
+      Jeff_Attack_Sheet_centred_2: 2702402292804256824
+      Jeff_Attack_Sheet_centred_3: -2098474718564106134
+      Jeff_Attack_Sheet_centred_4: -4188430644620760623
+      Jeff_Attack_Sheet_centred_5: 8215677189644625268
+      Jeff_Attack_Sheet_centred_6: -7012045928522036206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

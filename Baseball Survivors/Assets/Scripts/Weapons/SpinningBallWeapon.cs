@@ -9,6 +9,7 @@ public class SpinningBallWeapon : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] [Range(1, 3)] private int numberOfBalls = 1;
+    public int damage;
     public float rotationSpeed;
     public float range;
     public float ballSize;
@@ -48,11 +49,11 @@ public class SpinningBallWeapon : MonoBehaviour
                         degree180SpawnPoint.transform);
                     break;
                 case 3:
-                    Instantiate(baseballPrefab, transform.position, degree0SpawnPoint.transform.rotation,
+                    Instantiate(baseballPrefab, transform.position, transform.rotation,
                         degree0SpawnPoint.transform);
-                    Instantiate(baseballPrefab, transform.position, degree0SpawnPoint.transform.rotation,
+                    Instantiate(baseballPrefab, transform.position, transform.rotation,
                         degree120SpawnPoint.transform);
-                    Instantiate(baseballPrefab, transform.position, degree0SpawnPoint.transform.rotation,
+                    Instantiate(baseballPrefab, transform.position, transform.rotation,
                         degree240SpawnPoint.transform);
                     break;
             }

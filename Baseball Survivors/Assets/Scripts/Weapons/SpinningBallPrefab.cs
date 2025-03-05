@@ -16,6 +16,9 @@ public class SpinningBallPrefab : MonoBehaviour
 
     void Start()
     {
+        transform.localRotation = Quaternion.Euler(0f, 0f, -15f);
+        transform.localScale = new Vector3(0f, 0f, 1f);    
+
         rangeDistance = weapon.range;
         targetSize = new Vector3(weapon.ballSize, weapon.ballSize, 1f);
     }
@@ -35,6 +38,14 @@ public class SpinningBallPrefab : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(weapon.damage);
         }
     }
 }

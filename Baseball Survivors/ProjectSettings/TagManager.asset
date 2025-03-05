@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - PlayerAttack
+  - EnemyStop
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Enemy
   - EnemyHitBox
   - PlayerAttack
-  - 
+  - Weapon
   - 
   - 
   - 
@@ -45,6 +46,9 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 3292652795
+    locked: 0
+  - name: Weapons
+    uniqueID: 942657605
     locked: 0
   m_RenderingLayers:
   - Default

@@ -7,8 +7,6 @@ public class PlayerInstance : MonoBehaviour
 
     [Header("Player Config")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float attackCooldown = 1f;
-    private float attackTimer;
 
     [Header("Animators")]
     [SerializeField] private Animator bodyAnimator;
@@ -19,8 +17,6 @@ public class PlayerInstance : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
-
-    [SerializeField] private bool autoAttack;
 
     [SerializeField] private GameObject objectsToFlip;
 
@@ -34,16 +30,6 @@ public class PlayerInstance : MonoBehaviour
     private void Update()
     {
         PlayerMovement();
-
-        attackTimer += Time.deltaTime;
-        if(autoAttack)
-        {
-            if(attackTimer > attackCooldown)
-            {
-                bodyAnimator.SetTrigger("attack");
-                attackTimer = 0;
-            }
-        }
     }
 
     private void FixedUpdate()
@@ -80,32 +66,6 @@ public class PlayerInstance : MonoBehaviour
     public void Movement(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-    }
-
-    public void Attack(InputAction.CallbackContext context)
-    {
-        if (!context.started) return;
-        if (autoAttack) return;
-
-        if (attackTimer > attackCooldown)
-        {
-            bodyAnimator.SetTrigger("attack");
-            attackTimer = 0;
-        }
-    }
-
-    public void AutoAttackTrigger(InputAction.CallbackContext context)
-    {
-        if (!context.started) return;
-
-        if (autoAttack)
-        {
-            autoAttack = false;
-        }
-        else
-        {
-            autoAttack = true;
-        }
     }
     #endregion
 }

@@ -7,6 +7,7 @@ public class BaseballBatWeapon : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField][Range(1, 3)] private int weaponLevel = 1;
+    public int damage;
     public float projectileSpeed;
     public float projectileSize;
     public float weaponCooldown;

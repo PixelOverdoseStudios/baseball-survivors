@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int health = 5;
     [SerializeField] private int currentHealth;
     [SerializeField] private GameObject deathEffect;
+    [SerializeField] private int amountOfExp = 1;
 
     private SpriteRenderer sr;
     private EnemyBrain enemyBrain;
@@ -25,11 +26,25 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth -= value;
         StartCoroutine(FlashRedCo());
-        StartCoroutine(enemyBrain.KnockBackCo());
         Vector3 offset = new Vector3(0f, 0.65f, 0);
         if(currentHealth <= 0)
         {
             Instantiate(deathEffect, transform.position + offset, Quaternion.identity);
+            PlayerLevelingSystem.instance.GainExp(amountOfExp);
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void TakeDamage(int value, float knockBackForce)
+    {
+        currentHealth -= value;
+        StartCoroutine(FlashRedCo());
+        enemyBrain.CanKnockBackCheck(knockBackForce);
+        Vector3 offset = new Vector3(0f, 0.65f, 0);
+        if (currentHealth <= 0)
+        {
+            Instantiate(deathEffect, transform.position + offset, Quaternion.identity);
+            PlayerLevelingSystem.instance.GainExp(amountOfExp);
             Destroy(this.gameObject);
         }
     }

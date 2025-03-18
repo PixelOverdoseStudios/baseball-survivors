@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInstance : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerInstance instance;
+    public static PlayerMovement instance;
 
     [Header("Player Config")]
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed;
 
     [Header("Animators")]
     [SerializeField] private Animator bodyAnimator;
@@ -22,14 +22,17 @@ public class PlayerInstance : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+            Destroy(this);
+        else
+            instance = this;
 
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        PlayerMovement();
+        PlayerMovementLogic();
     }
 
     private void FixedUpdate()
@@ -38,7 +41,7 @@ public class PlayerInstance : MonoBehaviour
     }
 
     #region Player Functions
-    private void PlayerMovement()
+    private void PlayerMovementLogic()
     {
         if (moveInput.x > 0)
         {
@@ -65,6 +68,8 @@ public class PlayerInstance : MonoBehaviour
     #region Input Actions
     public void Movement(InputAction.CallbackContext context)
     {
+        if (PauseManager.instance.isPaused) return;
+
         moveInput = context.ReadValue<Vector2>();
     }
     #endregion

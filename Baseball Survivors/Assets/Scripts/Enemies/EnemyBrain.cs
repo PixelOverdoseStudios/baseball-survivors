@@ -17,9 +17,9 @@ public class EnemyBrain : MonoBehaviour
 
     private void Update()
     {
-        moveDirection = (PlayerInstance.instance.transform.position - transform.position).normalized;
+        moveDirection = (PlayerMovement.instance.transform.position - transform.position).normalized;
 
-        if(PlayerInstance.instance.transform.position.x > transform.position.x)
+        if(PlayerMovement.instance.transform.position.x > transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -31,7 +31,7 @@ public class EnemyBrain : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(PlayerInstance.instance.gameObject.activeSelf && Vector3.Distance(transform.position, PlayerInstance.instance.transform.position) > 0.1f)
+        if(PlayerMovement.instance.gameObject.activeSelf && Vector3.Distance(transform.position, PlayerMovement.instance.transform.position) > 0.1f)
         {
             rb.linearVelocity = new Vector3(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
         }
@@ -41,10 +41,18 @@ public class EnemyBrain : MonoBehaviour
         }
     }
 
-    public IEnumerator KnockBackCo()
+    public void CanKnockBackCheck(float _knockBackForce)
     {
-        moveSpeed *= -1;
+        if (!canKnockback) return;
+
+        StartCoroutine(KnockBackCo(_knockBackForce));
+    }
+
+    private IEnumerator KnockBackCo(float knockBackForce)
+    {
+        float originalMoveSpeed = moveSpeed;
+        moveSpeed = -knockBackForce;
         yield return new WaitForSeconds(knockBackDuration);
-        moveSpeed *= -1;
+        moveSpeed = originalMoveSpeed;
     }
 }

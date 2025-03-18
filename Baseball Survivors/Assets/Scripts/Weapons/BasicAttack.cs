@@ -8,6 +8,7 @@ public class BasicAttack : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private int damage;
+    [SerializeField] private float knockBackForce;
     [SerializeField] private float attackCooldown;
     private float attackCooldownTimer;
     private bool autoAttack = false;
@@ -34,7 +35,7 @@ public class BasicAttack : MonoBehaviour
     public void Attack(InputAction.CallbackContext context)
     {
         if (!context.started) return;
-        if (autoAttack) return;
+        if (autoAttack || PauseManager.instance.isPaused) return;
 
         if (attackCooldownTimer > attackCooldown)
         {
@@ -46,6 +47,7 @@ public class BasicAttack : MonoBehaviour
     public void AutoAttackTrigger(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+        if (PauseManager.instance.isPaused) return;
 
         if (autoAttack)
         {
@@ -61,7 +63,7 @@ public class BasicAttack : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyHealth>().TakeDamage(damage);
+            other.GetComponent<EnemyHealth>().TakeDamage(damage, knockBackForce);
         }
     }
 }

@@ -18,4 +18,19 @@ public class BaseballBatPrefab : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        string tag = other.tag;
+
+        switch(tag)
+        {
+            case "Enemy":
+                other.GetComponent<EnemyHealth>().TakeDamage(weapon.damage);
+                break;
+            case "Fence":
+                Destroy(this.gameObject);
+                break;
+        }
+    }
 }

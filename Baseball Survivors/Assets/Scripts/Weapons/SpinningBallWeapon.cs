@@ -26,7 +26,7 @@ public class SpinningBallWeapon : MonoBehaviour
 
     private void Start()
     {
-        cooldownCounter = weaponCooldown - 1.5f;
+        cooldownCounter = weaponCooldown - 0.5f;
     }
 
     private void Update()

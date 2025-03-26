@@ -26,4 +26,13 @@ public class BallLauncherPrefab : MonoBehaviour
     {
         transform.position += direction * weapon.projectileSpeed * Time.deltaTime;
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            other.GetComponent<EnemyHealth>().TakeDamage(weapon.projectileDamage);
+            Destroy(this.gameObject);
+        }
+    }
 }

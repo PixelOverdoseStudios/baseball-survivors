@@ -4,6 +4,7 @@ using UnityEngine;
 public class CardTemplateV2
 {
     public string cardName;
+    public Sprite cardImage;
     public CardType cardType;
     public CardEffect cardEffect;
     [TextArea(3, 10)]
@@ -14,7 +15,8 @@ public enum CardType
 {
     StatIncrease,
     WeaponUnlock,
-    WeaponBoost
+    WeaponBoost,
+    Special
 }
 
 public enum CardEffect
@@ -26,6 +28,12 @@ public enum CardEffect
     playerSpeedIncrease,
     playerCooldownReduction,
 
+    //=== PLAYER 1 BATTER UNLOCKS ===//
+    batterDamageIncrease,
+    batterKnockBackIncrease,
+    batterCooldownReduction,
+    batterSpecialUnlock,
+
     //=== WEAPON UNLOCKS ===//
     spinningBallsWeaponUnlock,
     flyingBatsWeaponUnlock,
@@ -35,7 +43,7 @@ public enum CardEffect
 
     //=== SPINNING BALLS UPGRADES ===//
     spinningBallsDamageIncrease,
-    spinningBallsDurationIncrease,
+    spinningBallsRotationSpeed,
     spinningBallsCooldownReduction,
     spinningBallsSpecialUnlock,
 

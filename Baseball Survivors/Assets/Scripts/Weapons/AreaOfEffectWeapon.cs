@@ -30,22 +30,19 @@ public class AreaOfEffectWeapon : MonoBehaviour
     [SerializeField] private CardTemplateV2 radiusCard;
     [SerializeField] private CardTemplateV2 specialCard;
 
-    private void Awake()
-    {
-        AddStarterCards();
-    }
 
     private void Start()
     {
         cooldown[cooldownLevel] += duration;
         cooldownTimer = cooldown[cooldownLevel] - 0.5f;
+        AddStarterCards();
     }
 
     private void Update()
     {
         cooldownTimer += Time.deltaTime;
 
-        if(cooldownTimer >= cooldown[cooldownLevel])
+        if(cooldownTimer >= cooldown[cooldownLevel] - PlayerLevelingSystem.instance.cooldownBonus)
         {
             Instantiate(areaOfEffectPrefab, transform);
             cooldownTimer = 0;
@@ -55,14 +52,12 @@ public class AreaOfEffectWeapon : MonoBehaviour
     public void LevelUpDamage()
     {
         damageLevel++;
-        overallNumberOfUpgrades++;
         OverallWeaponUpgradeIncrease();
     }
 
     public void LevelUpTargetSize()
     {
         radiusLevel++;
-        overallNumberOfUpgrades++;
         OverallWeaponUpgradeIncrease();
     }
 
@@ -83,19 +78,14 @@ public class AreaOfEffectWeapon : MonoBehaviour
     {
         overallNumberOfUpgrades++;
 
-        //Temp Code
-        if( overallNumberOfUpgrades >= 10)
+        if (overallNumberOfUpgrades == 3 || overallNumberOfUpgrades == 6)
+        {
+            CardHolder.instance.AddCard(specialCard);
+        }
+        else if (overallNumberOfUpgrades >= 10)
+        {
             RemoveStarterCards();
-
-        //TODO: Add Special Card
-        //if(overallNumberOfUpgrades == 3 || overallNumberOfUpgrades == 6)
-        //{
-        //    CardHolder.instance.AddCard(specialCard);
-        //}
-        //else if(overallNumberOfUpgrades >= 10)
-        //{
-        //    RemoveStarterCards();
-        //}
+        }
     }
 
     private void AddStarterCards()

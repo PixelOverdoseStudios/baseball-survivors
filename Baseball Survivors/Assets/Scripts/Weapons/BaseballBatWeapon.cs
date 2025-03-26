@@ -8,62 +8,44 @@ public class BaseballBatWeapon : MonoBehaviour
 
     [Header("Number of Bats Level")]
     [SerializeField][Range(1, 3)] private int weaponLevel = 1;
-
-    [Header("Damage Output")]
-    [SerializeField] private int startingDamage;
-    [SerializeField] private int damageAddedPerLevel;
-    [SerializeField] private int damageLevelCounter;
-    [HideInInspector] public int currentDamage;
-
-    [Header("Projectile Size")]
-    [SerializeField] private float startingProjectileSize;
-    [SerializeField] private float sizeMultiplier;
-    [SerializeField] private float sizeLevelCounter;
-    [HideInInspector] public float currentProjectileSize;
-
-    [Header("Cooldown")]
-    [SerializeField] private float startingCooldown;
-    [SerializeField] private float cooldownMultiplier;
-    [SerializeField] private float cooldownLevelCounter;
-    [HideInInspector] public float currentCooldown;
+    private int OverallWeaponLevel;
 
     [Header("Defaults")]
-    //[SerializeField] private float projectileSpeed;
-
-    public int damage;
     public float projectileSpeed;
-    public float projectileSize;
-    public float weaponCooldown;
-
-    private float cooldownCounter;
     private float positionTracker = 0;
+
+    [Header("Damage per Level")]
+    public int[] damage;
+    [HideInInspector] public int damageLevel;
+
+    [Header("Projectile Size per Level")]
+    public float[] projectileSize;
+    [HideInInspector] public int projectileSizeLevel;
+
+    [Header("Cooldown per Level")]
+    public float[] cooldown;
+    [HideInInspector] public int cooldownLevel;
+    private float cooldownCounter;
+
+    [Header("Starter Cards")]
+    [SerializeField] private CardTemplateV2 damageCard;
+    [SerializeField] private CardTemplateV2 projectileSizeCard;
+    [SerializeField] private CardTemplateV2 cooldownCard;
+
+    [Header("Special Card")]
+    [SerializeField] private CardTemplateV2 specialCard;
 
     public void Start()
     {
-        cooldownCounter = weaponCooldown - 0.5f;
+        cooldownCounter = cooldown[cooldownLevel] - 0.5f;
+        AddStarterCards();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Y))
-        {
-            CardTemplate damageBoostCard = new CardTemplate();
-
-            damageBoostCard.upgradeName = "Baseball Bat Damage+";
-            damageBoostCard.upgradeDescription = "Increases damage done by baseball bat.";
-            damageBoostCard.cardItemNum = 1;
-
-            //UpgradeManager.instance.CreateNewCard(damageBoostCard);
-        }
-
-        if(Input.GetKeyDown(KeyCode.U))
-        {
-            //UpgradeManager.instance.RemoveCard(1);
-        }
-
         cooldownCounter += Time.deltaTime;
 
-        if (cooldownCounter >= weaponCooldown)
+        if (cooldownCounter >= cooldown[cooldownLevel] - PlayerLevelingSystem.instance.cooldownBonus)
         {
             switch (weaponLevel)
             {
@@ -118,18 +100,62 @@ public class BaseballBatWeapon : MonoBehaviour
             }
         }
     }
-
-    public void CreateDamageBoostCard()
+    
+    public void LevelUpDamage()
     {
-        //damageBoostCard.upgradeName = "Baseball Bat Damage+";
-        //damageBoostCard.upgradeDescription = "Increases damage done by baseball bat.";
+        damageLevel++;
+        OverallWeaponLevelUp();
     }
-    //    public string upgradeName;
-    //public int upgradeLevel = 0;
-    //public string upgradeDescription;
 
-    public void TestingFunction()
+    public void LevelUpProjectileSize()
     {
-        Debug.Log("Connection works!");
+        projectileSizeLevel++;
+        OverallWeaponLevelUp();
+    }
+
+    public void LevelUpCooldown()
+    {
+        cooldownLevel++;
+        OverallWeaponLevelUp();
+    }
+
+    public void ActivateSpecial()
+    {
+        weaponLevel++;
+
+        CardHolder.instance.RemoveOneCard(CardEffect.flyingBatsSpecialUnlock);
+    }
+
+    private void OverallWeaponLevelUp()
+    {
+        OverallWeaponLevel++;
+
+        if(OverallWeaponLevel == 3 || OverallWeaponLevel == 6)
+        {
+            AddSpecialCard();
+        }
+        else if(OverallWeaponLevel >= 10)
+        {
+            RemoveStarterCards();
+        }
+    }
+
+    private void AddStarterCards()
+    {
+        CardHolder.instance.AddCard(damageCard);
+        CardHolder.instance.AddCard(projectileSizeCard);
+        CardHolder.instance.AddCard(cooldownCard);
+    }
+
+    private void RemoveStarterCards()
+    {
+        CardHolder.instance.RemoveCard(CardEffect.flyingBatsDamageIncrease);
+        CardHolder.instance.RemoveCard(CardEffect.flyingBatsProjctileSize);
+        CardHolder.instance.RemoveCard(CardEffect.flyingBatsWeaponCooldown);
+    }
+
+    private void AddSpecialCard()
+    {
+        CardHolder.instance.AddCard(specialCard);
     }
 }

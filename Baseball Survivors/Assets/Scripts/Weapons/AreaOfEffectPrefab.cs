@@ -13,6 +13,7 @@ public class AreaOfEffectPrefab : MonoBehaviour
     private float damagerCounter;
     private float growthTimer;
     private float shrinkTimer;
+    private int damageToGive;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class AreaOfEffectPrefab : MonoBehaviour
     private void Start()
     {
         transform.localScale = startPosition;
+        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + ShopStatUpgrades.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
     }
 
     private void Update()
@@ -37,28 +39,20 @@ public class AreaOfEffectPrefab : MonoBehaviour
         damagerCounter += Time.deltaTime;
         if(damagerCounter >= weapon.timeBetweenDamage)
         {
-            if(enemiesInRange.Count > 0)
+            if (enemiesInRange.Count > 0)
             {
                 for(int i = 0; i < enemiesInRange.Count; i++)
                 {
                     if (enemiesInRange[i] != null)
                     {
                         enemiesInRange[i].GetComponent<EnemyHealth>().
-                            TakeDamage(Mathf.RoundToInt(weapon.damage[weapon.damageLevel] * PlayerLevelingSystem.instance.damageMulti));
+                            TakeDamage(damageToGive);
                     }
                 }
             }
             damagerCounter = 0;
         }
     }
-
-    private IEnumerator GrowAndShrinkCo()
-    {
-        GrowCircle();
-        yield return new WaitForSeconds(weapon.duration);
-        ShrinkCircle();
-    }
-
 
     private void GrowCircle()
     {

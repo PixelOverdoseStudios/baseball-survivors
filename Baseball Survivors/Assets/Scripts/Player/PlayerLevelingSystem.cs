@@ -34,8 +34,15 @@ public class PlayerLevelingSystem : MonoBehaviour
     public float defenseBonus = 0;
     [SerializeField] private float maxDefenseBonus = 0.5f;
 
+    [Header("Level Up Panel")]
+    [SerializeField] private GameObject levelUpPanel;
+
     [Header("Cards to Create")]
-    [SerializeField] private List<CardTemplateV2> statStarterCards;
+    [SerializeField] private CardTemplateV2 playerMaxHealthCard;
+    [SerializeField] private CardTemplateV2 playerDamageCard;
+    [SerializeField] private CardTemplateV2 playerDefenseCard;
+    [SerializeField] private CardTemplateV2 playerSpeedCard;
+    [SerializeField] private CardTemplateV2 playerCooldownCard;
 
     private void Awake()
     {
@@ -50,10 +57,7 @@ public class PlayerLevelingSystem : MonoBehaviour
         playerCurrentLevel = 1;
         UpdateExpSlider();
 
-        //for(int i = 0; i < statStarterCards.Count; i++)
-        //{
-        //    CardHolder.instance.AddCard(statStarterCards[i]);
-        //}
+        AddStarterCards();
     }
 
     public void GainExp(int amount)
@@ -69,6 +73,9 @@ public class PlayerLevelingSystem : MonoBehaviour
         currentExpPoints -= expNeededForNextLevel;
         expNeededForNextLevel = Mathf.RoundToInt(expNeededForNextLevel * 1.2f);
         UpdateExpSlider();
+        if(!levelUpPanel.gameObject.activeSelf) 
+            levelUpPanel.gameObject.SetActive(true);
+        PauseManager.instance.CheckPauseState();
     }
 
     private void UpdateExpSlider()
@@ -126,5 +133,14 @@ public class PlayerLevelingSystem : MonoBehaviour
         {
             CardHolder.instance.RemoveCard("Defense Buff");
         }
+    }
+
+    private void AddStarterCards()
+    {
+        CardHolder.instance.AddCard(playerMaxHealthCard);
+        CardHolder.instance.AddCard(playerDamageCard);
+        CardHolder.instance.AddCard(playerDefenseCard);
+        CardHolder.instance.AddCard(playerSpeedCard);
+        CardHolder.instance.AddCard(playerCooldownCard);
     }
 }

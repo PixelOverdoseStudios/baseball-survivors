@@ -12,7 +12,7 @@ public class BallLauncherObject : MonoBehaviour
     private BallLauncherWeapon weapon;
     private Animator animator;
 
-    [HideInInspector] public float projectileDamage;
+    [HideInInspector] public int projectileDamage;
     [HideInInspector] public float projectileSpeed;
 
     private void Awake()
@@ -25,9 +25,9 @@ public class BallLauncherObject : MonoBehaviour
     {
         Destroy(this.gameObject, weapon.turretLifeTime);
         GetComponent<CircleCollider2D>().radius = weapon.detectionRadius;
-        projectileDamage = weapon.projectileDamage;
+        projectileDamage = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + ShopStatUpgrades.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti); ;
         projectileSpeed = weapon.projectileSpeed;
-        cooldownTimer = weapon.projectileCooldown - 0.5f;
+        cooldownTimer = weapon.fireRate[weapon.fireRateLevel] - 0.5f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -54,7 +54,7 @@ public class BallLauncherObject : MonoBehaviour
         {
             return;
         }
-        else if (cooldownTimer > weapon.projectileCooldown)
+        else if (cooldownTimer > weapon.fireRate[weapon.fireRateLevel])
         {
             CheckForNearestTarget();
             AdjustFacingDirection();

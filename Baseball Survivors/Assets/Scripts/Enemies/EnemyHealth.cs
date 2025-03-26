@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
 
     private SpriteRenderer sr;
     private EnemyBrain enemyBrain;
+    private Vector3 offset = new Vector3(0f, 0.65f, 0);
 
     private void Awake()
     {
@@ -24,9 +25,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int value)
     {
-        currentHealth -= value;
+        currentHealth -= Mathf.RoundToInt(value * PlayerLevelingSystem.instance.damageMulti);
         StartCoroutine(FlashRedCo());
-        Vector3 offset = new Vector3(0f, 0.65f, 0);
         if(currentHealth <= 0)
         {
             Instantiate(deathEffect, transform.position + offset, Quaternion.identity);
@@ -40,7 +40,26 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= value;
         StartCoroutine(FlashRedCo());
         enemyBrain.CanKnockBackCheck(knockBackForce);
-        Vector3 offset = new Vector3(0f, 0.65f, 0);
+        if (currentHealth <= 0)
+        {
+            Instantiate(deathEffect, transform.position + offset, Quaternion.identity);
+            PlayerLevelingSystem.instance.GainExp(amountOfExp);
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void TakeDamage(int value, float timeOfEffect, StatusEffect statusEffect)
+    {
+        currentHealth -= value;
+        if(statusEffect == StatusEffect.slowed)
+        {
+            enemyBrain.EnemyIsSlowed(timeOfEffect);
+        }
+        else if(statusEffect == StatusEffect.frozen)
+        {
+            enemyBrain.EnemyIsFrozen(timeOfEffect);
+        }
+        StartCoroutine(FlashRedCo());
         if (currentHealth <= 0)
         {
             Instantiate(deathEffect, transform.position + offset, Quaternion.identity);
@@ -53,6 +72,12 @@ public class EnemyHealth : MonoBehaviour
     {
         sr.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        sr.color = Color.white;
+        enemyBrain.CheckColorSprite();
     }
+}
+
+public enum StatusEffect
+{
+    slowed,
+    frozen
 }

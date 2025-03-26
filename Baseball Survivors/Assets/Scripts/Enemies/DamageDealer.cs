@@ -7,6 +7,12 @@ public class DamageDealer : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f;
     private float attackCooldownCounter;
     private PlayerHealth player;
+    private EnemyBrain enemyBrain;
+
+    private void Awake()
+    {
+        enemyBrain = GetComponent<EnemyBrain>();
+    }
 
     private void Update()
     {
@@ -32,6 +38,8 @@ public class DamageDealer : MonoBehaviour
 
     private void DamagePlayer()
     {
+        if (enemyBrain.IsFrozen()) return;
+
         if(player != null && attackCooldownCounter >= attackCooldown)
         {
             player.TakeDamage(damage);

@@ -12,6 +12,11 @@ public class LevelUpPanel : MonoBehaviour
         DisplayCardOptions();
     }
 
+    private void OnDisable()
+    {
+        PauseManager.instance.CheckPauseState();
+    }
+
     private void DisplayCardOptions()
     {
         retrievedCardList = CardHolder.instance.GetAvailableCards();
@@ -22,7 +27,7 @@ public class LevelUpPanel : MonoBehaviour
         int card1Assigned = x;
 
         GameObject card1 = Instantiate(cardPrefab, transform);
-        card1.GetComponent<CardPrefab>().RetrieveData(retrievedCardList[x].cardName, retrievedCardList[x].cardType, retrievedCardList[x].cardEffect, retrievedCardList[x].cardDescription);
+        card1.GetComponent<CardPrefab>().RetrieveData(retrievedCardList[x].cardImage, retrievedCardList[x].cardName, retrievedCardList[x].cardType, retrievedCardList[x].cardEffect, retrievedCardList[x].cardDescription);
 
         if (retrievedCardList.Count == 1) return;
 
@@ -34,7 +39,7 @@ public class LevelUpPanel : MonoBehaviour
         int card2Assigned = x;
 
         GameObject card2 = Instantiate(cardPrefab, transform);
-        card2.GetComponent<CardPrefab>().RetrieveData(retrievedCardList[x].cardName, retrievedCardList[x].cardType, retrievedCardList[x].cardEffect, retrievedCardList[x].cardDescription);
+        card2.GetComponent<CardPrefab>().RetrieveData(retrievedCardList[x].cardImage, retrievedCardList[x].cardName, retrievedCardList[x].cardType, retrievedCardList[x].cardEffect, retrievedCardList[x].cardDescription);
 
         if (retrievedCardList.Count == 2) return;
 
@@ -45,6 +50,6 @@ public class LevelUpPanel : MonoBehaviour
         while (x == card1Assigned || x == card2Assigned);
 
         GameObject card3 = Instantiate(cardPrefab, transform);
-        card3.GetComponent<CardPrefab>().RetrieveData(retrievedCardList[x].cardName, retrievedCardList[x].cardType, retrievedCardList[x].cardEffect, retrievedCardList[x].cardDescription);
+        card3.GetComponent<CardPrefab>().RetrieveData(retrievedCardList[x].cardImage, retrievedCardList[x].cardName, retrievedCardList[x].cardType, retrievedCardList[x].cardEffect, retrievedCardList[x].cardDescription);
     }
 }

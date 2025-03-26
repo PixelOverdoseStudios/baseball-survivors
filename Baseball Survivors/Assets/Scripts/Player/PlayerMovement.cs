@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        rb.linearVelocity = moveInput * (moveSpeed + PlayerLevelingSystem.instance.speedIncrease);
     }
 
     #region Player Functions
@@ -68,9 +68,13 @@ public class PlayerMovement : MonoBehaviour
     #region Input Actions
     public void Movement(InputAction.CallbackContext context)
     {
-        if (PauseManager.instance.isPaused) return;
+        if (PauseManager.instance.isPaused)
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
 
-        moveInput = context.ReadValue<Vector2>();
+            moveInput = context.ReadValue<Vector2>();
     }
     #endregion
 }

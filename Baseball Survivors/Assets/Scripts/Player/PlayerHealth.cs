@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +23,9 @@ public class PlayerHealth : MonoBehaviour
     private Material bodyDefaultMat;
     private Material legsDefaultMat;
 
+    [Header("References")]
+    [SerializeField] private HUD_PlayerIcon playerIcon;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -41,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        currentHealth -= amount;
+        currentHealth -= Mathf.RoundToInt(amount * (1 - PlayerLevelingSystem.instance.defenseBonus));
         cameraShake.StartCoroutine(cameraShake.ScreenShakeCo());
         StartCoroutine(FlashCo());
 
@@ -77,6 +81,7 @@ public class PlayerHealth : MonoBehaviour
     {
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
+        playerIcon.UpdatePlayerHudIcon();
     }
 
     public IEnumerator FlashCo()
@@ -89,4 +94,10 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public int GetPlayerMaxHealth() => maxHealth;
+    public float PlayerHealthPercentage()
+    {
+        float _currentHealth = currentHealth;
+        float _maxHealth = maxHealth;
+        return _currentHealth / _maxHealth;
+    }
 }

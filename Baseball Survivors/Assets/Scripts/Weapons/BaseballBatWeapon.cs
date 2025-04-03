@@ -45,7 +45,7 @@ public class BaseballBatWeapon : MonoBehaviour
     {
         cooldownCounter += Time.deltaTime;
 
-        if (cooldownCounter >= cooldown[cooldownLevel] - PlayerLevelingSystem.instance.cooldownBonus)
+        if (cooldownCounter >= cooldown[cooldownLevel] * PlayerLevelingSystem.instance.cooldownBonus)
         {
             switch (weaponLevel)
             {

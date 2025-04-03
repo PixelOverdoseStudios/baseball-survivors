@@ -9,6 +9,8 @@ TagManager:
   - EnemyStop
   - Fence
   - Wall
+  - LobbyPlayer
+  - Map
   layers:
   - Default
   - TransparentFX

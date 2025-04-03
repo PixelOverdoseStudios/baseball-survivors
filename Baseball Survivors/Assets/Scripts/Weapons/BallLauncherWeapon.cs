@@ -41,7 +41,7 @@ public class BallLauncherWeapon : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
 
-        if(cooldownTimer >= spawningCooldown[spawningCooldownLevel] - PlayerLevelingSystem.instance.cooldownBonus)
+        if(cooldownTimer >= spawningCooldown[spawningCooldownLevel] * PlayerLevelingSystem.instance.cooldownBonus)
         {
             Instantiate(ballLauncherObject, transform.position, Quaternion.identity);
             cooldownTimer = 0;

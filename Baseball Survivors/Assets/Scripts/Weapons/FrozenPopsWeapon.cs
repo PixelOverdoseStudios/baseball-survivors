@@ -29,7 +29,7 @@ public class FrozenPopsWeapon : MonoBehaviour
 
     [Header("Special Card")]
     [SerializeField] private CardTemplateV2 specialCard;
-    private int specialLevel = 0;
+    [SerializeField] private int specialLevel = 0;
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class FrozenPopsWeapon : MonoBehaviour
     {
         cooldownCounter += Time.deltaTime;
 
-        if(cooldownCounter >= cooldown[cooldownLevel] - PlayerLevelingSystem.instance.cooldownBonus)
+        if(cooldownCounter >= cooldown[cooldownLevel] * PlayerLevelingSystem.instance.cooldownBonus)
         {
             ShootPrefab();
             cooldownCounter = 0;

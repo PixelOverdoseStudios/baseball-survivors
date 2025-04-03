@@ -52,7 +52,7 @@ public class SpinningBallWeapon : MonoBehaviour
         transform.Rotate(Vector3.forward, -rotationSpeed[rotationSpeedLevel] * Time.deltaTime);
 
         cooldownCounter += Time.deltaTime;
-        if(cooldownCounter >= weaponCooldown[weaponCooldownLevel] + duration)
+        if(cooldownCounter >= (weaponCooldown[weaponCooldownLevel] * PlayerLevelingSystem.instance.cooldownBonus) + duration)
         {
             switch(numberOfBalls)
             {

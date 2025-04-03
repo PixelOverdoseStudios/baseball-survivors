@@ -13,7 +13,7 @@ public class FrozenPopPrefab : MonoBehaviour
 
     private void Start()
     {
-        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + ShopStatUpgrades.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
+        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + GameManager.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
     }
 
     private void Update()
@@ -47,8 +47,8 @@ public class FrozenPopPrefab : MonoBehaviour
                 }
                 else if(weapon.GetSpecialLevel() == 2 && other.GetComponent<EnemyBrain>().CanBeFrozen())
                 {
-                    int chance = Random.Range(1, 10);
-                    if (chance == 1 || chance == 2)
+                    int chance = Random.Range(1, 5);
+                    if (chance == 1)
                     {
                         other.GetComponent<EnemyHealth>().TakeDamage(damageToGive, weapon.slowDuration[weapon.slowDurationLevel], StatusEffect.frozen);
                     }

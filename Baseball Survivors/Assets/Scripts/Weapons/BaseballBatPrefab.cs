@@ -12,7 +12,7 @@ public class BaseballBatPrefab : MonoBehaviour
 
     private void Start()
     {
-        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + ShopStatUpgrades.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
+        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + GameManager.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
         float projectileSize = weapon.projectileSize[weapon.projectileSizeLevel];
         transform.localScale = new Vector3(projectileSize, projectileSize, 1);
     }

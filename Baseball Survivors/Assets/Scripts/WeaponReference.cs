@@ -45,6 +45,7 @@ public class WeaponReference : MonoBehaviour
             CardHolder.instance.RemoveCard(CardEffect.flyingBatsWeaponUnlock);
             currentWeaponCount++;
             CheckForWeaponLimit();
+            WeaponIcons.instance.AddWeaponIcon(WeaponIcon.flyingBat);
         }
     }
 
@@ -56,6 +57,7 @@ public class WeaponReference : MonoBehaviour
             CardHolder.instance.RemoveCard(CardEffect.spinningBallsWeaponUnlock);
             currentWeaponCount++;
             CheckForWeaponLimit();
+            WeaponIcons.instance.AddWeaponIcon(WeaponIcon.baseball);
         }
     }
 
@@ -67,6 +69,7 @@ public class WeaponReference : MonoBehaviour
             CardHolder.instance.RemoveCard(CardEffect.frozenPopsWeaponUnlock);
             currentWeaponCount++;
             CheckForWeaponLimit();
+            WeaponIcons.instance.AddWeaponIcon(WeaponIcon.frozenPop);
         }
     }
 
@@ -78,6 +81,7 @@ public class WeaponReference : MonoBehaviour
             CardHolder.instance.RemoveCard(CardEffect.areaOfEffectWeaponUnlock);
             currentWeaponCount++;
             CheckForWeaponLimit();
+            WeaponIcons.instance.AddWeaponIcon(WeaponIcon.areaOfEffect);
         }
     }
 
@@ -89,6 +93,7 @@ public class WeaponReference : MonoBehaviour
             CardHolder.instance.RemoveCard(CardEffect.ballLauncherWeaponUnlock);
             currentWeaponCount++;
             CheckForWeaponLimit();
+            WeaponIcons.instance.AddWeaponIcon(WeaponIcon.ballLauncher);
         }
     }
 
@@ -140,7 +145,7 @@ public class WeaponReference : MonoBehaviour
     public void AreaOfEffectLevelUpDamage() => areaOfEffectWeapon.GetComponent<AreaOfEffectWeapon>().LevelUpDamage();
     public void AreaOfEffectLevelUpTargetSize() => areaOfEffectWeapon.GetComponent<AreaOfEffectWeapon>().LevelUpTargetSize();
     public void AreaOfEffectLevelUpCooldown() => areaOfEffectWeapon.GetComponent<AreaOfEffectWeapon>().LevelUpCooldown();
-    public void AreaOfEffectLevelUpSpecial() => areaOfEffectWeapon.GetComponent<AreaOfEffectWeapon>().LevelUpSpecial();
+    public void AreaOfEffectLevelUpSpecial() => areaOfEffectWeapon.GetComponent<AreaOfEffectWeapon>().ActivateSpecial();
 
     //=== BALL LAUNCHER REFERENCES ===//
     public void BallLauncherLevelUpDamage() => ballLauncherWeapon.GetComponent<BallLauncherWeapon>().LevelUpDamage();

@@ -29,7 +29,7 @@ public class SpinningBallPrefab : MonoBehaviour
         transform.localPosition = startPosition;
         rangeDistance = weapon.range;
         targetSize = new Vector3(weapon.ballSize, weapon.ballSize, 1f);
-        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + ShopStatUpgrades.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
+        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + GameManager.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
     }
 
     private void Update()

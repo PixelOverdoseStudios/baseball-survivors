@@ -10,6 +10,7 @@ public class AreaOfEffectWeapon : MonoBehaviour
     [SerializeField] private int overallNumberOfUpgrades;
     public float duration;
     public float timeBetweenDamage;
+    public float specialKnockBackForce;
 
     [Header("Damage per Level")]
     public int[] damage;
@@ -28,12 +29,14 @@ public class AreaOfEffectWeapon : MonoBehaviour
     [SerializeField] private CardTemplateV2 damageCard;
     [SerializeField] private CardTemplateV2 cooldownCard;
     [SerializeField] private CardTemplateV2 radiusCard;
+
+    [Header("Special Card")]
     [SerializeField] private CardTemplateV2 specialCard;
+    private int specialLevel = 0;
 
 
     private void Start()
     {
-        cooldown[cooldownLevel] += duration;
         cooldownTimer = cooldown[cooldownLevel] - 0.5f;
         AddStarterCards();
     }
@@ -42,7 +45,7 @@ public class AreaOfEffectWeapon : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
 
-        if(cooldownTimer >= cooldown[cooldownLevel] - PlayerLevelingSystem.instance.cooldownBonus)
+        if(cooldownTimer >= (cooldown[cooldownLevel] * PlayerLevelingSystem.instance.cooldownBonus) + duration)
         {
             Instantiate(areaOfEffectPrefab, transform);
             cooldownTimer = 0;
@@ -68,9 +71,11 @@ public class AreaOfEffectWeapon : MonoBehaviour
         OverallWeaponUpgradeIncrease();
     }
 
-    public void LevelUpSpecial()
+    public int SpecialLevel() => specialLevel;
+
+    public void ActivateSpecial()
     {
-        timeBetweenDamage -= 0.2f;
+        specialLevel++;
         CardHolder.instance.RemoveOneCard(CardEffect.areaOfEffectSpecialUnlock);
     }
 

@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 1706975100281926423}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6528, z: 0}
-  m_LocalScale: {x: 0.81267923, y: 1.307599, z: 1}
+  m_LocalPosition: {x: -0.022, y: 0.793, z: 0}
+  m_LocalScale: {x: 0.46, y: 0.46, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 729746892523057274}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: -1002314501
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0, g: 0.5810094, b: 1, a: 0.39215687}
+  m_Sprite: {fileID: 21300000, guid: b0735d83c6935db49bc932ba30a9a755, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -297,6 +297,7 @@ MonoBehaviour:
   isBeingKnockedBack: 0
   isSlowed: 0
   isFrozen: 0
+  isWaveDone: 0
   slowedTime: 0
 --- !u!114 &5297554246858727221
 MonoBehaviour:
@@ -326,7 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba518f9636501cc43b8b957d35a26c22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 0
   attackCooldown: 1
 --- !u!210 &2361991302863036285
 SortingGroup:

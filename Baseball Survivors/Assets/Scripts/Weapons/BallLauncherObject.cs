@@ -15,6 +15,8 @@ public class BallLauncherObject : MonoBehaviour
     [HideInInspector] public int projectileDamage;
     [HideInInspector] public float projectileSpeed;
 
+    private bool isVisible;
+
     private void Awake()
     {
         weapon = FindFirstObjectByType<BallLauncherWeapon>();
@@ -25,7 +27,7 @@ public class BallLauncherObject : MonoBehaviour
     {
         Destroy(this.gameObject, weapon.turretLifeTime);
         GetComponent<CircleCollider2D>().radius = weapon.detectionRadius;
-        projectileDamage = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + ShopStatUpgrades.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti); ;
+        projectileDamage = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + GameManager.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti); ;
         projectileSpeed = weapon.projectileSpeed;
         cooldownTimer = weapon.fireRate[weapon.fireRateLevel] - 0.5f;
     }
@@ -59,6 +61,7 @@ public class BallLauncherObject : MonoBehaviour
             CheckForNearestTarget();
             AdjustFacingDirection();
             animator.SetTrigger("shoot");
+            if(isVisible) AudioManager.instance.PlaySFXRandomPitch(2);
             cooldownTimer = 0;
         }
     }
@@ -105,5 +108,15 @@ public class BallLauncherObject : MonoBehaviour
             if (deltaY < 0) animator.SetTrigger("faceUp");
             if (deltaY > 0) animator.SetTrigger("faceDown");
         }
+    }
+
+    private void OnBecameVisible()
+    {
+        isVisible = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
     }
 }

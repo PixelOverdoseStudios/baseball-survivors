@@ -154,7 +154,6 @@ public class CardPrefab : MonoBehaviour
                 break;
             case CardEffect.areaOfEffectSpecialUnlock:
                 WeaponReference.instance.AreaOfEffectLevelUpSpecial();
-                //TODO: update this special
                 break;
 
             //=== BALL LAUNCHER UPGRADES ===//

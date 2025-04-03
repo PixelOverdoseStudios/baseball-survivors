@@ -54,6 +54,7 @@ public class BatterBasicAttack : MonoBehaviour
             {
                 bodyAnimator.SetTrigger("attack");
                 attackCooldownTimer = 0;
+                AudioManager.instance.PlaySFXRandomPitch(1);
             }
         }
     }
@@ -67,6 +68,7 @@ public class BatterBasicAttack : MonoBehaviour
         {
             bodyAnimator.SetTrigger("attack");
             attackCooldownTimer = 0;
+            AudioManager.instance.PlaySFXRandomPitch(1);
         }
     }
 
@@ -87,12 +89,13 @@ public class BatterBasicAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        int damageToGive = Mathf.RoundToInt((damage[damageLevel] + ShopStatUpgrades.instance.GetDamageUpgrade()) *
+        int damageToGive = Mathf.RoundToInt((damage[damageLevel] + GameManager.instance.GetDamageUpgrade()) *
             PlayerLevelingSystem.instance.damageMulti);
 
         if(other.gameObject.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyHealth>().TakeDamage(damageToGive, knockBackForce[knockBackLevel]);
+            AudioManager.instance.PlaySFXRandomPitch(0);
         }
     }
 

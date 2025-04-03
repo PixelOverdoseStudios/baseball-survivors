@@ -27,7 +27,7 @@ public class PlayerLevelingSystem : MonoBehaviour
     [SerializeField] private float maxSpeedIncrease = 2;
 
     [Header("Cooldown Bonus")]
-    public float cooldownBonus = 0;
+    public float cooldownBonus = 1;
     [SerializeField] private float maxCooldownBonus = 0.5f;
 
     [Header("Defense Bonus")]
@@ -117,9 +117,9 @@ public class PlayerLevelingSystem : MonoBehaviour
 
     public void UpgradeCooldownBonus()
     {
-        cooldownBonus += 0.05f;
+        cooldownBonus -= 0.05f;
 
-        if(cooldownBonus >= maxCooldownBonus)
+        if(cooldownBonus == maxCooldownBonus)
         {
             CardHolder.instance.RemoveCard("Cooldown Reduction Multiplier");
         }

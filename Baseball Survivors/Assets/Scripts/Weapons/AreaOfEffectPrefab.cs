@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AreaOfEffectPrefab : MonoBehaviour
 {
+    [SerializeField] private GameObject effectSpecial;
+
     public List<GameObject> enemiesInRange;
 
     private AreaOfEffectWeapon weapon;
@@ -23,7 +25,8 @@ public class AreaOfEffectPrefab : MonoBehaviour
     private void Start()
     {
         transform.localScale = startPosition;
-        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + ShopStatUpgrades.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
+        damageToGive = Mathf.RoundToInt((weapon.damage[weapon.damageLevel] + GameManager.instance.GetDamageUpgrade()) * PlayerLevelingSystem.instance.damageMulti);
+        if(effectSpecial.activeInHierarchy) effectSpecial.SetActive(false);
     }
 
     private void Update()
@@ -41,12 +44,71 @@ public class AreaOfEffectPrefab : MonoBehaviour
         {
             if (enemiesInRange.Count > 0)
             {
-                for(int i = 0; i < enemiesInRange.Count; i++)
+                if(weapon.SpecialLevel() == 1)
                 {
-                    if (enemiesInRange[i] != null)
+                    int chance = Random.Range(1, 20);
+
+                    if(chance == 1)
                     {
-                        enemiesInRange[i].GetComponent<EnemyHealth>().
-                            TakeDamage(damageToGive);
+                        for (int i = 0; i < enemiesInRange.Count; i++)
+                        {
+                            if (enemiesInRange[i] != null)
+                            {
+                                enemiesInRange[i].GetComponent<EnemyHealth>().
+                                    TakeDamage(damageToGive, weapon.specialKnockBackForce);
+                            }
+                        }
+                        effectSpecial.SetActive(true);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < enemiesInRange.Count; i++)
+                        {
+                            if (enemiesInRange[i] != null)
+                            {
+                                enemiesInRange[i].GetComponent<EnemyHealth>().
+                                    TakeDamage(damageToGive);
+                            }
+                        }
+                    }
+                }
+                else if(weapon.SpecialLevel() == 2)
+                {
+                    int chance = Random.Range(1, 20);
+
+                    if(chance == 1 || chance == 2)
+                    {
+                        for (int i = 0; i < enemiesInRange.Count; i++)
+                        {
+                            if (enemiesInRange[i] != null)
+                            {
+                                enemiesInRange[i].GetComponent<EnemyHealth>().
+                                    TakeDamage(damageToGive, weapon.specialKnockBackForce);
+                            }
+                        }
+                        effectSpecial.SetActive(true);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < enemiesInRange.Count; i++)
+                        {
+                            if (enemiesInRange[i] != null)
+                            {
+                                enemiesInRange[i].GetComponent<EnemyHealth>().
+                                    TakeDamage(damageToGive);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < enemiesInRange.Count; i++)
+                    {
+                        if (enemiesInRange[i] != null)
+                        {
+                            enemiesInRange[i].GetComponent<EnemyHealth>().
+                                TakeDamage(damageToGive);
+                        }
                     }
                 }
             }

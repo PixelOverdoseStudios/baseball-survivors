@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
@@ -14,6 +15,7 @@ public class EnemyBrain : MonoBehaviour
     [SerializeField] private bool isBeingKnockedBack;
     [SerializeField] private bool isSlowed;
     [SerializeField] private bool isFrozen;
+    [SerializeField] private bool isWaveDone;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -128,5 +130,15 @@ public class EnemyBrain : MonoBehaviour
         {
             sr.color = Color.white;
         }
+    }
+
+    public void CheckIfOnScreen()
+    {
+        isWaveDone = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (isWaveDone) Destroy(this.gameObject);
     }
 }

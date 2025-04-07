@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,14 +10,18 @@ public class Test_PlayerController : MonoBehaviour
     [SerializeField] private bool activePlayer;
     [SerializeField] private int playerIndex;
 
-    [SerializeField] private GameObject mapUI;
+    [SerializeField] private Animator bodyAnim;
+    [SerializeField] private Animator legsAnim;
+
+    //[SerializeField] private GameObject mapUI;
 
     private Test_UserInput userInput;
     private Rigidbody2D rb;
     private Vector2 moveInput;
-    private GameObject lobbyPlayer;
-    private bool playerFound;
-    private bool mapFound;
+    //[SerializeField] private List<GameObject> interactableObjects;
+    [SerializeField] private GameObject nearestInteractable;
+    //private bool playerFound;
+    //private bool mapFound;
 
     private void Awake()
     {
@@ -34,20 +40,56 @@ public class Test_PlayerController : MonoBehaviour
 
         if(userInput.InteractIsPressed)
         {
-            if(playerFound)
+            if(nearestInteractable != null)
             {
-                Debug.Log("E was pressed");
-                this.ActivateAndDeactivePlayer();
-                lobbyPlayer.GetComponent<Test_PlayerController>().ActivateAndDeactivePlayer();
-            }
-            else if(mapFound)
-            {
-                if(mapUI.activeInHierarchy)
-                    mapUI.SetActive(false);
-                else if(!mapUI.activeInHierarchy)
-                    mapUI.SetActive(true);
+                nearestInteractable.GetComponent<InteractableObject>().Interact();
             }
         }
+
+        //if(interactableObjects.Count > 0)
+        //{
+        //    float distance = float.MaxValue;
+
+        //    for(int i = 0; i < interactableObjects.Count; i++)
+        //    {
+        //        if(interactableObjects[i] != null)
+        //        {
+        //            if(Vector3.Distance(this.transform.position, interactableObjects[i].transform.position) < distance)
+        //            {
+        //                nearestInteractable = interactableObjects[i];
+        //            }
+        //        }
+        //    }
+
+        //    for(int i = 0; i < interactableObjects.Count; ++i)
+        //    {
+        //        if(interactableObjects[i] != nearestInteractable)
+        //            interactableObjects[i].GetComponent<InteractableObject>().DeactivateHighlight();
+        //    }
+        //    nearestInteractable.GetComponent<InteractableObject>().HighlightObject();
+        //}
+        //else
+        //{
+        //    nearestInteractable.GetComponent<InteractableObject>().DeactivateHighlight();
+        //    nearestInteractable = null;
+        //}
+
+        //if(userInput.InteractIsPressed)
+        //{
+        //    if(playerFound)
+        //    {
+        //        Debug.Log("E was pressed");
+        //        this.ActivateAndDeactivePlayer();
+        //        lobbyPlayer.GetComponent<Test_PlayerController>().ActivateAndDeactivePlayer();
+        //    }
+        //    else if(mapFound)
+        //    {
+        //        if(mapUI.activeInHierarchy)
+        //            mapUI.SetActive(false);
+        //        else if(!mapUI.activeInHierarchy)
+        //            mapUI.SetActive(true);
+        //    }
+        //}
     }
 
     private void FixedUpdate()
@@ -55,36 +97,80 @@ public class Test_PlayerController : MonoBehaviour
         rb.linearVelocity = moveInput * moveSpeed;
     }
 
+    private void LateUpdate()
+    {
+        if (moveInput.x > 0)
+        {
+            transform.localScale = new Vector3(-2, 2, 1);
+        }
+        else if (moveInput.x < 0)
+        {
+            transform.localScale = new Vector3(2, 2, 1);
+        }
+
+        if (moveInput != Vector2.zero)
+        {
+            bodyAnim.SetBool("moving", true);
+            legsAnim.SetBool("moving", true);
+        }
+        else
+        {
+            bodyAnim.SetBool("moving", false);
+            legsAnim.SetBool("moving", false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        string tag = other.tag;
-
-        switch(tag)
+        if(other.gameObject.GetComponent<InteractableObject>())
         {
-            case "LobbyPlayer":
-                lobbyPlayer = other.gameObject;
-                playerFound = true;
-                break;
-            case "Map":
-                mapFound = true;
-                break;
+            if(nearestInteractable ==  null)
+            {
+                nearestInteractable = other.gameObject;
+                nearestInteractable.gameObject.GetComponent<InteractableObject>().HighlightObject();
+            }
+            if(nearestInteractable != null)
+            {
+                nearestInteractable.gameObject.GetComponent<InteractableObject>().DeactivateHighlight();
+                nearestInteractable = other.gameObject;
+                nearestInteractable.gameObject.GetComponent<InteractableObject>().HighlightObject();
+            }
         }
+
+
+        //string tag = other.tag;
+
+        //switch(tag)
+        //{
+        //    case "LobbyPlayer":
+        //        lobbyPlayer = other.gameObject;
+        //        playerFound = true;
+        //        break;
+        //    case "Map":
+        //        mapFound = true;
+        //        break;
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        string tag = other.tag;
-
-        switch (tag)
+        if(other.gameObject == nearestInteractable)
         {
-            case "LobbyPlayer":
-                lobbyPlayer = null;
-                playerFound = false;
-                break;
-            case "Map":
-                mapFound = false;
-                break;
+            nearestInteractable.gameObject.GetComponent<InteractableObject>().DeactivateHighlight();
+            nearestInteractable = null;
         }
+        //string tag = other.tag;
+
+        //switch (tag)
+        //{
+        //    case "LobbyPlayer":
+        //        lobbyPlayer = null;
+        //        playerFound = false;
+        //        break;
+        //    case "Map":
+        //        mapFound = false;
+        //        break;
+        //}
     }
 
     public void ActivateAndDeactivePlayer()
